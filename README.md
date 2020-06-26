@@ -8,9 +8,11 @@
 
 3. Navigate into the folder of the project
 
-4. Put in a file.txt your addresses to be scanned, one per line
+4. Run `npm install i` from the terminal, inside the project folder
 
-5. Run `node main.js path filename true`
+5. Put in a file.txt your addresses to be scanned, one per line
+
+6. Run `node main.js path filename true`
    
    > `filename`: is the name of the file, like `addresses.txt`
    > 
@@ -18,7 +20,6 @@
    > 
    > `true`: put true if your file contains private keys instead of public addresses, ***LEAVE BLANK*** otherwise
 
-The script will generate a log with some relevant information concerning the balance of each address and the total amount, both for ETH and tokens in $$
-$
+The script will generate a log with some relevant information concerning the balance of each address and the total amount, both for ETH and tokens in $
 
 

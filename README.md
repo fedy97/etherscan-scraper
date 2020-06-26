@@ -1,5 +1,9 @@
 # Etherscan.io Scraper
 
+#### What it is
+
+Etherscan is a website that tracks Ethereum wallets, if you register you can add in a watchlist up to 25 addresses and see the total amount of $. I wanted to extend the maximum of watchable wallets, so I did this scraper that iterates through a textual list of addresses of arbitrary length and gets all the relevant information, all in one.
+
 #### Instructions
 
 1. Install Node.js

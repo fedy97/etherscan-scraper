@@ -1,22 +1,15 @@
-//node main.js `path` `file containing addresses` `something if pk used`
+const dotenv = require('dotenv').config({path: __dirname + '/config.env'});
 const eth = require('ethereumjs-util');
 const axios = require('axios');
 //const sleep = require('sleep');
 const moment = require('moment');
-//path selected
-let path = __dirname;
-let usePk = false;
-let fileName = "addresses.txt";
-if (process.argv.length > 2) {
-    path = process.argv[2];
-    if (process.argv.length > 3)
-        fileName = process.argv[3];
-    if (process.argv.length > 4)
-        usePk = true;
-}
+
+let path = process.env.INPUT_PATH || __dirname + "/addresses.txt";
+let usePk = process.env.USEPRIVATEKEYS || false;
+let output = process.env.OUTPUT_PATH || __dirname + "/";
 
 var fs = require('fs')
-    , filename = path + fileName;
+    , filename = path;
 let addr_list = [];
 let total_eth = 0.0;
 let total_tokens = 0.0;
@@ -41,11 +34,14 @@ if (usePk) {
     addr_list = data.match(/.{42}/g);
 }
 
-
 work().then(r => {
     //write a log once finished
-    fs.writeFileSync(path + moment(Date.now()).format('DD-MM-YYYY') + ".txt", JSON.stringify(r));
-    console.log("finished!")
+    try {
+        fs.writeFileSync(output + moment(Date.now()).format('DD-MM-YYYY') + ".txt", JSON.stringify(r));
+        console.log("finished!")
+    } catch (e) {
+        console.log("error in writing the file, maybe you typed the output path incorrectly? -> " + output)
+    }
 });
 
 //scraper
